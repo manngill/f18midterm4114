@@ -8,10 +8,13 @@
 
 import UIKit
 
-class DepositViewController: UIViewController {
+class DepositViewController: UIViewController ,NSManagedObjectContext!
+{
 
     // MARK: Outlets
     // ---------------------
+    var name:String = "";
+     var context:NSManagedObjectContext!
     @IBOutlet weak var customerIdTextBox: UITextField!
     @IBOutlet weak var balanceLabel: UILabel!
 
@@ -24,6 +27,40 @@ class DepositViewController: UIViewController {
         super.viewDidLoad()
 
         print("You are on the Check Balance screen!")
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        self.context = appDelegate.persistentContainer.viewContext
+        
+     
+       
+        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+        fetchRequest.predicate =  NSPredicate(format: "name == %@", self.name)
+        
+        do {
+            let results = try self.context.fetch(fetchRequest) as [AddCustomer]
+            
+            
+            print("Number of items in database: \(results.count)")
+            
+            if (results.count == 1) {
+                let x = results[0] as AddCustomer
+                name.text = x.name!
+                startingBalance.text = x.startingBalance!
+            }
+            else if (results.count == 0) {
+                name.text = "Error, no results found!"
+            }
+            else if (results.count > 1) {
+                name.text = "Sorry, more than 1 result found!"
+            }
+            
+        }
+        catch {
+            print("Error when fetching from database")
+        }
+        
+    }
+
     }
 
     override func didReceiveMemoryWarning() {
