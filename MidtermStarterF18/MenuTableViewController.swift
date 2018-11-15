@@ -32,35 +32,35 @@ class MenuTableViewController: UITableViewController {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 2
-    }
-
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-
-        let indexPath = tableView.indexPathForSelectedRow
-
-        let index = indexPath?.row
-
-        let AddCustomerViewController = segue.destination as! AddCustomerViewController
-        // Pass on the data to the Detail ViewController by setting it's indexPathRow value
-       // AddCustomerViewController.index = index
-    }
     
     
     
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
 
         return cell
     }
-    */
+    
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // do stuff when person clicks on a row
+        print("Person clicked on something")
+        print(indexPath.row)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        let indexPath = tableView.indexPathForSelectedRow
+        
+        _ = indexPath?.row
+        
+        _ = segue.destination as! AddCustomerViewController
+       
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

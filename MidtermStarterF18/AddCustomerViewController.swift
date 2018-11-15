@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
-class AddCustomerViewController: UIViewController ,NSManagedObjectContext?
+class AddCustomerViewController: UIViewController
+    
 {
 
-    // MARK: Outlets
-    // ---------------------
-    
+  
     var person:AddCustomer!
     var personName:String = "";
     
@@ -22,25 +22,28 @@ class AddCustomerViewController: UIViewController ,NSManagedObjectContext?
     
     @IBOutlet weak var startingBalanceTextBox: UITextField!
     
-    
-    
     @IBOutlet weak var messageLabel: UILabel!
     
-    // MARK: Default Functions
-    // ---------------------
-    override func viewDidLoad() {
+     var context:NSManagedObjectContext!
+    
+  
+  override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+      guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    
+    self.context = appDelegate.persistentContainer.viewContext
+
+    
         var context:NSManagedObjectContext!
         
 
         
-        // HINT HINT HINT HINT HINT
-        // HINT HINT HINT HINT HINT
-        // Code to create a random 4 digit string
+    
         var x:String = ""
-        repeat {
-            // Create a string with a random number 0...9991
+        repeat
+        {
+           
             x = String(format:"%04d", arc4random_uniform(9992) )
         } while x.count < 4
         
@@ -83,33 +86,32 @@ class AddCustomerViewController: UIViewController ,NSManagedObjectContext?
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        print("STEP 1: HELLO!!!!")
         
-        //let screen2 = segue.destination as! SearchResultsViewController
-        //screen2.personName = self.searchTextBox.text!
+        print("Adding Customers")
         
-        let editScreen = segue.destination as! EditUserViewController
+      
+      
         
-        //SELECT * FROM User WHERE email = .....
+        let DepositScreen = segue.destination as! DepositViewController
+        
+       
         let fetchRequest:NSFetchRequest<User> = Person.fetchRequest()
         fetchRequest.predicate =  NSPredicate(format: "Name == %@", "man@gmail.com")
         
         do {
             
-            let person = try self.context.fetch(fetchRequest) as [User]
+            let person = try self.context.fetch(fetchRequest) as [Person]
             
             // Loop through the database results and output each "row" to the screen
             print("Number of persons in database: \(person.count)")
             
             if (person.count == 1) {
-                editScreen.person = person[0] as Person
+                DepositScreen.person = person[0] as Person
             }
             
         }
         catch {
-            print("Error when fetching from database")
+            print("Could Not Find")
         }
         
         
