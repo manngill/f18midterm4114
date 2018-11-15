@@ -63,12 +63,17 @@ class MenuTableViewController: UITableViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
         let indexPath = tableView.indexPathForSelectedRow
-        
-        _ = indexPath?.row
-        
-        _ = segue.destination as! AddCustomerViewController
+        // Get the Row of the Index Path and set as index
+        let index = indexPath?.row
+        if (index  == 0)
+        {
+            // Get in touch with the DetailViewController
+            let customerController = segue.destination as! AddCustomerViewController
+            // Pass on the data to the Detail ViewController by setting it's indexPathRow value
+          //tomerController.index = index!
+            
+        }
        
     }
     

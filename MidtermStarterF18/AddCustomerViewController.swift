@@ -16,6 +16,7 @@ class AddCustomerViewController: UIViewController
   
     var person:Int = 0;
     var personName:String = "";
+     
     
     
     @IBOutlet weak var nameTextBox: UITextField!
