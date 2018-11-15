@@ -20,14 +20,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            else
+        {
+            return
+            
+        }
         
        
         self.context = appDelegate.persistentContainer.viewContext
         
     }
-    
-    }
+
+
+
 
 func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

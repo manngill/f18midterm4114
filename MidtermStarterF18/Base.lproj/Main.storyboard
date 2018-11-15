@@ -153,6 +153,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Create Account"/>
                                 <connections>
+                                    <action selector="createAccount:" destination="OHc-fJ-KRO" eventType="touchUpInside" id="ciY-8T-SmN"/>
                                     <action selector="createAccountPressed:" destination="OHc-fJ-KRO" eventType="touchUpInside" id="Ex3-wZ-jPr"/>
                                 </connections>
                             </button>
@@ -175,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sr6-AS-2gP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2775" y="-283"/>
+            <point key="canvasLocation" x="2773.5999999999999" y="-283.80809595202402"/>
         </scene>
         <!--Deposit View Controller-->
         <scene sceneID="EC1-IJ-H4I">

@@ -24,35 +24,6 @@ class AddCustomerViewController: UIViewController ,NSManagedObjectContext?
     
     
     
-    @IBAction func saveButtonPressed(_ sender: Any) {
-        
-        print("DEBUG: Create button pressed!")
-        
-        // SQL: UPDATE USER (username,password) VALUES ("abc@gmail.com", 1234)
-        person.name = nameTextBox.text!
-        person.password = startingBalanceTextBox.text!
-        
-        // sending the SAVE to the databse
-        do {
-            try self.context.save()
-            print("Customer added")
-        }
-        catch {
-            print("Customer not added")
-        }
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @IBOutlet weak var messageLabel: UILabel!
     
     // MARK: Default Functions
@@ -88,6 +59,61 @@ class AddCustomerViewController: UIViewController ,NSManagedObjectContext?
     
     @IBAction func createAccountPressed(_ sender: Any) {
         print("you pressed the create account button!")
+        
+     
+        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+        
+      
+        do {
+           
+            let person = try self.context.fetch(fetchRequest) as [Person]
+            
+           
+            print("Number of  person in database: \(person.count)")
+            
+            for x in person {
+                print("UserName: \(x.name)")
+                print("Starting Balance: \(x.startingBalance)")
+            }
+        }
+        catch {
+            print("Error when fetching from database")
+        }
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        print("STEP 1: HELLO!!!!")
+        
+        //let screen2 = segue.destination as! SearchResultsViewController
+        //screen2.personName = self.searchTextBox.text!
+        
+        let editScreen = segue.destination as! EditUserViewController
+        
+        //SELECT * FROM User WHERE email = .....
+        let fetchRequest:NSFetchRequest<User> = Person.fetchRequest()
+        fetchRequest.predicate =  NSPredicate(format: "Name == %@", "man@gmail.com")
+        
+        do {
+            
+            let person = try self.context.fetch(fetchRequest) as [User]
+            
+            // Loop through the database results and output each "row" to the screen
+            print("Number of persons in database: \(person.count)")
+            
+            if (person.count == 1) {
+                editScreen.person = person[0] as Person
+            }
+            
+        }
+        catch {
+            print("Error when fetching from database")
+        }
+        
+        
+    }
     }
     
     
