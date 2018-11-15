@@ -14,7 +14,7 @@ class AddCustomerViewController: UIViewController
 {
 
   
-    var person:AddCustomer!
+    var person:Int = 0;
     var personName:String = "";
     
     
@@ -35,19 +35,11 @@ class AddCustomerViewController: UIViewController
     self.context = appDelegate.persistentContainer.viewContext
 
     
-        var context:NSManagedObjectContext!
+   // var person = NSManagedObjectContext?()
         
 
         
     
-        var x:String = ""
-        repeat
-        {
-           
-            x = String(format:"%04d", arc4random_uniform(9992) )
-        } while x.count < 4
-        
-        print("Random value: \(x)")
         
         
     }
@@ -56,36 +48,35 @@ class AddCustomerViewController: UIViewController
         super.didReceiveMemoryWarning()
     }
 
-    
-    // MARK: Actions
-    // ---------------------
-    
+ 
     @IBAction func createAccountPressed(_ sender: Any) {
         print("you pressed the create account button!")
         
-        let p = person(context: self.context)
-        p.name = nameTextBox.text!
-        p.startingBalance = startingBalanceTextBox.text!
+     //   let p = person(context: self.context)
         
+      //  p.name = nameTextBox.text!
+      //  p.startingBalance = startingBalanceTextBox.text!
         
-     
-        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+        var x:String = ""
+        repeat
+        {
+            
+            x = String(format:"%04d", arc4random_uniform(9992) )
+        } while x.count < 4
         
-      
+        print("Random value: \(x)")
+        let u = Customer(context: self.context)
+        u.name = nameTextBox.text!
+        u.startingBalance = Double(startingBalanceTextBox.text!)!
+        
         do {
-           
-            let person = try self.context.fetch(fetchRequest) as [Person]
-            
-           
-            print("Number of  person in database: \(person.count)")
-            
-            for x in person {
-                print("UserName: \(x.name)")
-                print("Starting Balance: \(x.startingBalance)")
-            }
+            // Save the user to the database
+            // (Send the INSERT to the database)
+            try self.context.save()
+            print("Saved to database!")
         }
         catch {
-            print("Error when fetching from database")
+            print("Error while saving to database")
         }
     }
     
@@ -100,19 +91,19 @@ class AddCustomerViewController: UIViewController
         let DepositScreen = segue.destination as! DepositViewController
         
        
-        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+        let fetchRequest:NSFetchRequest<Customer> = Customer.fetchRequest()
         fetchRequest.predicate =  NSPredicate(format: "Name == %@", "man@gmail.com")
         
         do {
             
-            let person = try self.context.fetch(fetchRequest) as [Person]
+            let person = try self.context.fetch(fetchRequest) as [Customer]
             
             // Loop through the database results and output each "row" to the screen
             print("Number of persons in database: \(person.count)")
             
-            if (person.count == 1) {
-                DepositScreen.person = person[0] as Person
-            }
+          //  if (person.count == 1) {
+             //   DepositScreen.person = person[0] as Person
+           // }
             
         }
         catch {
@@ -123,8 +114,7 @@ class AddCustomerViewController: UIViewController
     }
     }
     
-    
-    
+
     
     
     /*
@@ -137,4 +127,4 @@ class AddCustomerViewController: UIViewController
     }
     */
 
-}
+

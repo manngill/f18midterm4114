@@ -1,4 +1,4 @@
- //
+ //
 //  DepositViewController.swift
 //  MidtermStarterF18
 //
@@ -7,14 +7,15 @@
 //
 
 import UIKit
+ import CoreData
 
 class DepositViewController: UIViewController
     
 {
 
-    var person:Person!
+    var person:String = "";
     var name:String = "";
-      var context:NSManagedObjectContext!
+    var context:NSManagedObjectContext!
     
     
     @IBOutlet weak var customerIdTextBox: UITextField!
@@ -23,33 +24,56 @@ class DepositViewController: UIViewController
     @IBOutlet weak var depositAmountTextBox: UITextField!
     @IBOutlet weak var messagesLabel: UILabel!
     
-    @IBAction func checkBalancePressed(_ sender: Any) {
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        person.name = nameTextBox.text!
-        person.startingBalance = startingBalanceTextBox.text!
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
-        do {
-          
-            try self.person.save()
-            print("Saved to database!")
+        self.context = appDelegate.persistentContainer.viewContext
+        
+        
+        
+        func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+            
         }
-        catch {
-            print("Error while saving to database")
-        }
         
-        
-    }
         
         
     }
     
+    @IBAction func checkBalancePressed(_ sender: Any) {
+        
+        let fetchRequest:NSFetchRequest<Customer> = Customer.fetchRequest()
+        
+        fetchRequest.predicate = NSPredicate(format: "customerId == %@", customerIdTextBox.text!);
+        
+        
+        do {
+            
+            let person = try self.context.fetch(fetchRequest) as [Customer]
+            
+            
+            print("Number of person in database: \(person.count)")
+            
+            for x in person {
+                balanceLabel.text = "\(x.startingBalance)"
+            }
+        }
+        catch {
+            print("Could not find person")
+        }
+    }
+    
 func depositeButtonPressed(_ sender: Any) {
         
-        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
+        let fetchRequest:NSFetchRequest<Customer> = Customer.fetchRequest()
         
         do {
           
-            let person = try self.person.fetch(fetchRequest) as [Person]
+            let person = try self.context.fetch(fetchRequest) as [Customer]
             
             
             print("Number of person in database: \(person.count)")
@@ -71,30 +95,4 @@ func depositeButtonPressed(_ sender: Any) {
 
     @IBAction func showCustomerPressed(_ sender: Any) {
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-       
-
-        print("You are on the Check Balance screen!")
-        
-       
-
-        func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
-    
-  
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
+ }

@@ -8,7 +8,10 @@
 
 import UIKit
 
-class MenuTableViewController: UITableViewController {
+class MenuTableViewController: UITableViewController
+
+{
+     var bankInfo = ["Add Customer", "Make Deposite"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +27,12 @@ class MenuTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return bankInfo.count
+    }
+    
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -37,11 +44,15 @@ class MenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        
+             cell.textLabel?.text = bankInfo[indexPath.row]
 
-        return cell
+        return cell;
     }
     
+    var index: Int!
     
+    //label.text = ("You tapped the cell at index \(index)")
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // do stuff when person clicks on a row
@@ -61,7 +72,19 @@ class MenuTableViewController: UITableViewController {
        
     }
     
-
+    
+    
+   // override func prepared(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+    //    let indexPath = tableView.indexPathForSelectedRow
+   //
+    //    _ = indexPath?.row
+        
+     //   _ = segue.destination as! DepositViewController
+     //
+   // }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

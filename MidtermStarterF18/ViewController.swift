@@ -12,11 +12,14 @@ import CoreData
 
 class ViewController: UIViewController {
 
+   // var bankInfo = ["Add Customer", "Make Deposite"]
     
     var context:NSManagedObjectContext!
     var person:String = "";
     
     
+   
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +37,7 @@ class ViewController: UIViewController {
     }
 
 
-
+   
 
     override func didReceiveMemoryWarning()
 {
@@ -43,13 +46,10 @@ class ViewController: UIViewController {
    
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return person.count
-    }
-
+  
 
 }
 
 
 
+}

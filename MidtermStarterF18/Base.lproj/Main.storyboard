@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
         </scene>
-        <!--Menu Table View Controller-->
+        <!--Bank App-->
         <scene sceneID="Eqe-T3-IcE">
             <objects>
                 <tableViewController id="duw-KI-HMZ" customClass="MenuTableViewController" customModule="MidtermStarterF18" customModuleProvider="target" sceneMemberID="viewController">
@@ -85,21 +85,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="4" indentationWidth="10" reuseIdentifier="myCell" id="dva-kj-kUs">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dva-kj-kUs" id="LXU-u4-XUC">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="duw-KI-HMZ" id="CcS-Xy-a0q"/>
                             <outlet property="delegate" destination="duw-KI-HMZ" id="T8S-Lj-bHc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="CqP-vq-LNN"/>
+                    <navigationItem key="navigationItem" title="Bank App" id="CqP-vq-LNN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pdc-SN-sQA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
