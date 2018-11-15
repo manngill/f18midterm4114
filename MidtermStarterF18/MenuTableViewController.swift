@@ -29,14 +29,29 @@ class MenuTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 2
     }
 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+
+        let indexPath = tableView.indexPathForSelectedRow
+
+        let index = indexPath?.row
+
+        let AddCustomerViewController = segue.destination as! AddCustomerViewController
+        // Pass on the data to the Detail ViewController by setting it's indexPathRow value
+       // AddCustomerViewController.index = index
+    }
+    
+    
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

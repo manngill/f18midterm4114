@@ -7,19 +7,33 @@
 //
 
 import UIKit
+import CoreData
+
 
 class ViewController: UIViewController {
 
+    
+    var context:NSManagedObjectContext!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+       
+        self.context = appDelegate.persistentContainer.viewContext
+        
+    }
+    
     }
 
-    override func didReceiveMemoryWarning() {
+func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
 
-}
+
 

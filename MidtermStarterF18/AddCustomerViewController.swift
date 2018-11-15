@@ -8,18 +8,60 @@
 
 import UIKit
 
-class AddCustomerViewController: UIViewController {
+class AddCustomerViewController: UIViewController ,NSManagedObjectContext?
+{
 
     // MARK: Outlets
     // ---------------------
+    
+    var person:AddCustomer!
+    var personName:String = "";
+    
+    
     @IBOutlet weak var nameTextBox: UITextField!
+    
     @IBOutlet weak var startingBalanceTextBox: UITextField!
+    
+    
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        print("DEBUG: Create button pressed!")
+        
+        // SQL: UPDATE USER (username,password) VALUES ("abc@gmail.com", 1234)
+        person.name = nameTextBox.text!
+        person.password = startingBalanceTextBox.text!
+        
+        // sending the SAVE to the databse
+        do {
+            try self.context.save()
+            print("Customer added")
+        }
+        catch {
+            print("Customer not added")
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @IBOutlet weak var messageLabel: UILabel!
     
     // MARK: Default Functions
     // ---------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var context:NSManagedObjectContext!
+        
 
         
         // HINT HINT HINT HINT HINT
