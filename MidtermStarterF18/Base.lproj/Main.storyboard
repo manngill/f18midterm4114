@@ -191,7 +191,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Check Balance"/>
                                 <connections>
-                                    <action selector="checkBalancePressed:" destination="AwZ-za-cEv" eventType="touchUpInside" id="Tuc-H0-Er6"/>
+                                    <action selector="checkBalancePressed:" destination="AwZ-za-cEv" eventType="touchUpInside" id="bJt-uF-dDX"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Check Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9K-kL-lEo">
@@ -215,6 +215,7 @@
                                 <state key="normal" title="Deposit"/>
                                 <connections>
                                     <action selector="depositButtonPressed:" destination="AwZ-za-cEv" eventType="touchUpInside" id="gjM-eU-cZ2"/>
+                                    <action selector="depositeButtonPressed:" destination="AwZ-za-cEv" eventType="touchUpInside" id="MSR-VK-ZzH"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Amount to Deposit" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fH5-qV-5ig">
@@ -250,6 +251,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="+Show Customers"/>
                                 <connections>
+                                    <action selector="showCustomerPressed:" destination="AwZ-za-cEv" eventType="touchUpInside" id="01c-Ea-OTf"/>
                                     <action selector="showCustomersPressed:" destination="AwZ-za-cEv" eventType="touchUpInside" id="Kyi-kK-ubI"/>
                                 </connections>
                             </button>

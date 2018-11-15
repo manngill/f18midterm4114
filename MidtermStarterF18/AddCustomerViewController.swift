@@ -63,6 +63,11 @@ class AddCustomerViewController: UIViewController
     @IBAction func createAccountPressed(_ sender: Any) {
         print("you pressed the create account button!")
         
+        let p = person(context: self.context)
+        p.name = nameTextBox.text!
+        p.startingBalance = startingBalanceTextBox.text!
+        
+        
      
         let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
         
@@ -95,7 +100,7 @@ class AddCustomerViewController: UIViewController
         let DepositScreen = segue.destination as! DepositViewController
         
        
-        let fetchRequest:NSFetchRequest<User> = Person.fetchRequest()
+        let fetchRequest:NSFetchRequest<Person> = Person.fetchRequest()
         fetchRequest.predicate =  NSPredicate(format: "Name == %@", "man@gmail.com")
         
         do {

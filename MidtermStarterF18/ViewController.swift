@@ -14,6 +14,7 @@ class ViewController: UIViewController {
 
     
     var context:NSManagedObjectContext!
+    var person:String = "";
     
     
     override func viewDidLoad() {
@@ -38,6 +39,10 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning()
 {
         super.didReceiveMemoryWarning()
+    
+   
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return person.count
