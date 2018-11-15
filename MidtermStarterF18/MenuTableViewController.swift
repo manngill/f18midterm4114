@@ -74,6 +74,14 @@ class MenuTableViewController: UITableViewController
           //tomerController.index = index!
             
         }
+        
+        else{
+            // let customerController = segue.destination as! DepositViewController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "deposit")
+            // self.present(controller, animated: true, completion: nil)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
        
     }
     

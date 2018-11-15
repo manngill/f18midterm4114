@@ -84,6 +84,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="OHc-fJ-KRO" kind="show" id="a4h-UU-X50"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -173,7 +176,7 @@
         <!--Deposit View Controller-->
         <scene sceneID="EC1-IJ-H4I">
             <objects>
-                <viewController id="AwZ-za-cEv" customClass="DepositViewController" customModule="MidtermStarterF18" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="deposit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AwZ-za-cEv" customClass="DepositViewController" customModule="MidtermStarterF18" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CQs-Yz-NXz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
