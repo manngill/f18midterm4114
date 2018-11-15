@@ -62,7 +62,7 @@ class MenuTableViewController: UITableViewController
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        `
         let indexPath = tableView.indexPathForSelectedRow
         // Get the Row of the Index Path and set as index
         let index = indexPath?.row
